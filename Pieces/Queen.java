@@ -10,6 +10,7 @@ public class Queen extends Piece {
 
     @Override
     public boolean isValidMove(int startR, int startC, int endR, int endC, Board board) {
+        System.out.println("[Log] Evaluating Queen path clearance...");
         int rowDiff = Math.abs(startR - endR);
         int colDiff = Math.abs(startC - endC);
 
