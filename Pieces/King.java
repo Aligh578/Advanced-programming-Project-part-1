@@ -12,6 +12,10 @@ public class King extends Piece {
     public boolean isValidMove(int startR, int startC, int endR, int endC, Board board) {
         int rowDiff = Math.abs(startR - endR);
         int colDiff = Math.abs(startC - endC);
-        return rowDiff <= 1 && colDiff <= 1;
+
+        int maxStep = Math.max(rowDiff, colDiff);
+        if (startR == endR && startC == endC) return false;
+
+        return maxStep == 1;
     }
 }
