@@ -10,7 +10,11 @@ public class Rook extends Piece {
 
     @Override
     public boolean isValidMove(int startR, int startC, int endR, int endC, Board board) {
-        if (startR != endR && startC != endC) return false;
+        boolean isHorizontal = (startR == endR);
+        boolean isVertical = (startC == endC);
+
+        if (!isHorizontal && !isVertical) return false;
+        if (startR == endR && startC == endC) return false;
 
         int rowStep = Integer.compare(endR, startR);
         int colStep = Integer.compare(endC, startC);
