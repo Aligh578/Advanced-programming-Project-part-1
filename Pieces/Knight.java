@@ -12,6 +12,7 @@ public class Knight extends Piece {
     public boolean isValidMove(int startR, int startC, int endR, int endC, Board board) {
         int rowDiff = Math.abs(startR - endR);
         int colDiff = Math.abs(startC - endC);
-        return (rowDiff == 2 && colDiff == 1) || (rowDiff == 1 && colDiff == 2);
+        boolean isValidKnightL = (rowDiff * colDiff == 2);
+        return isValidKnightL;
     }
 }
