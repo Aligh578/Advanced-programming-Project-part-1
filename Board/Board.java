@@ -55,7 +55,7 @@ public class Board {
             System.out.print((8 - row) + " "); 
             for (int col = 0; col < 8; col++) {
                 if (grid[row][col] == null) {
-                    System.out.print(". ");
+                    System.out.print(" . ");
                 } else {
                     System.out.print(grid[row][col].getSymbol() + " ");
                 }
