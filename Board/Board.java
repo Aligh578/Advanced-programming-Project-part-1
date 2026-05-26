@@ -44,7 +44,9 @@ public class Board {
     }
 
     public boolean isWithinBounds(int row, int col) {
-        return row >= 0 && row < 8 && col >= 0 && col < 8;
+        boolean rowCheck = (row >= 0 && row < 8);
+        boolean colCheck = (col >= 0 && col < 8);
+        return rowCheck && colCheck;
     }
 
     public void printBoard() {
