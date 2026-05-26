@@ -10,7 +10,6 @@ public class Board {
         grid = new Piece[8][8];
         initializeBoard();
     }
-
     private void initializeBoard() {
         // چیدن سیاه
         grid[0][0] = new Rook(Color.BLACK);
