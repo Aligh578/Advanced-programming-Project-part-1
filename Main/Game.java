@@ -17,6 +17,8 @@ public class Game {
     public void start() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("=== به بازی شطرنج خوش آمدید (فاز ۱) ===");
+        System.out.println("---------------------------------------");
+        System.out.println("نکته: مختصات مبدا و مقصد را با فاصله وارد کنید.");
 
         while (true) {
             board.printBoard();
