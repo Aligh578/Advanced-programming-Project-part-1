@@ -9,19 +9,28 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public boolean isValidMove(int startR, int startC, int endR, int endC, Board board) {
-        if (Math.abs(startR - endR) != Math.abs(startC - endC)) return false;
+    public boolean isValidMove(int srcRow, int srcCol, int destRow, int destCol, Board board) {
 
-        int rowStep = Integer.compare(endR, startR);
-        int colStep = Integer.compare(endC, startC);
-        int currentRow = startR + rowStep;
-        int currentCol = startC + colStep;
+        if (srcRow == destRow && srcCol == destCol) return false;
 
-        while (currentRow != endR && currentCol != endC) {
-            if (board.getPiece(currentRow, currentCol) != null) return false;
+        int rowDiff = Math.abs(destRow - srcRow);
+        int colDiff = Math.abs(destCol - srcCol);
+        if (rowDiff != colDiff) return false;
+
+        int rowStep = (destRow > srcRow) ? 1 : -1;
+        int colStep = (destCol > srcCol) ? 1 : -1;
+
+        int currentRow = srcRow + rowStep;
+        int currentCol = srcCol + colStep;
+
+     while (currentRow != destRow && currentCol != destCol) {
+            if (board.getPiece(currentRow, currentCol) != null) {
+                return false; 
+            }
             currentRow += rowStep;
             currentCol += colStep;
         }
+
         return true;
     }
 }
