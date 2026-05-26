@@ -15,5 +15,10 @@ public abstract class Piece {
     public Color getColor() { return color; }
     public char getSymbol() { return symbol; }
 
-    public abstract boolean isValidMove(int startR, int startC, int endR, int endC, Board board);
+    @Override
+    public String toString() {
+        return color + " " + this.getClass().getSimpleName() + " (" + symbol + ")";
+    }
+
+    public abstract boolean isValidMove(int srcRow, int srcCol, int destRow, int destCol, Board board);
 }
