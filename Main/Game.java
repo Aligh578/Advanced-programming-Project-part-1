@@ -37,6 +37,8 @@ public class Game {
     }
 
     private boolean processMove(String input) {
+        if (input == null || input.trim().isEmpty()) return false;
+        
         input = input.toLowerCase().replaceAll("[\\s-]+", "");
         if (input.length() != 4) return false;
 
