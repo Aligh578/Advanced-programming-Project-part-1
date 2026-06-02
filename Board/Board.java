@@ -11,7 +11,7 @@ public class Board {
         initializeBoard();
     }
     private void initializeBoard() {
-        // چیدن سیاه
+
         grid[0][0] = new Rook(Color.BLACK);
         grid[0][1] = new Knight(Color.BLACK);
         grid[0][2] = new Bishop(Color.BLACK);
@@ -22,7 +22,7 @@ public class Board {
         grid[0][7] = new Rook(Color.BLACK);
         for (int i = 0; i < 8; i++) grid[1][i] = new Pawn(Color.BLACK);
 
-        // چیدن سفید
+
         for (int i = 0; i < 8; i++) grid[6][i] = new Pawn(Color.WHITE);
         grid[7][0] = new Rook(Color.WHITE);
         grid[7][1] = new Knight(Color.WHITE);
