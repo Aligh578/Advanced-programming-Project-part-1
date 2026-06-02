@@ -22,7 +22,7 @@ public class Game {
 
         while (true) {
             board.printBoard();
-            System.out.print("Turn [" + (currentTurn == Color.WHITE ? "White" : "Black") + "] -> Move (For Example e2 e4): ");
+            System.out.print("Turn [" + (currentTurn == Color.WHITE ? "White" : "Black") + "] -> Move (For Example e2 e4 & e2-e4): ");
             String input = scanner.nextLine().trim();
 
             if (input.equalsIgnoreCase("exit")) break;
