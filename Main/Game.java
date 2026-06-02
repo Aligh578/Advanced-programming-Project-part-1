@@ -30,7 +30,7 @@ public class Game {
             if (processMove(input)) {
                 currentTurn = (currentTurn == Color.WHITE) ? Color.BLACK : Color.WHITE;
             } else {
-                System.out.println("❌ Invalid move !");
+                System.out.println("Invalid move !!!!");
             }
         }
         scanner.close();
