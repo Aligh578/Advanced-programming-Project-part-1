@@ -5,7 +5,7 @@ import Board.Board;
 
 public class Pawn extends Piece {
     public Pawn(Color color) {
-        super(color, color == Color.WHITE ? '♙' : '♟');
+        super(color, color == Color.WHITE ? 'P' : 'p');
     }
 
     @Override
