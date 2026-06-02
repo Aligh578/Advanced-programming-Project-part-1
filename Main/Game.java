@@ -16,13 +16,13 @@ public class Game {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("=== به بازی شطرنج خوش آمدید (فاز ۱) ===");
+        System.out.println("=== WELCOME TO THE GAME OF CHESS. ===");
         System.out.println("---------------------------------------");
-        System.out.println("نکته: مختصات مبدا و مقصد را با فاصله وارد کنید.");
+        System.out.println("Tip : Enter the origin and destination coordinates with a distance.");
 
         while (true) {
             board.printBoard();
-            System.out.print("نوبت [" + (currentTurn == Color.WHITE ? "سفید" : "سیاه") + "] -> حرکت (مثال e2 e4): ");
+            System.out.print("Turn [" + (currentTurn == Color.WHITE ? "White" : "Black") + "] -> Move (For Example e2 e4): ");
             String input = scanner.nextLine().trim();
 
             if (input.equalsIgnoreCase("exit")) break;
@@ -30,7 +30,7 @@ public class Game {
             if (processMove(input)) {
                 currentTurn = (currentTurn == Color.WHITE) ? Color.BLACK : Color.WHITE;
             } else {
-                System.out.println("❌ حرکت نامعتبر!");
+                System.out.println("❌ Invalid move !");
             }
         }
         scanner.close();
