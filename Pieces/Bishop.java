@@ -5,7 +5,7 @@ import Board.Board;
 
 public class Bishop extends Piece {
     public Bishop(Color color) {
-        super(color, color == Color.WHITE ? '♗' : '♝');
+        super(color, color == Color.WHITE ? 'a' : 'A');
     }
 
     @Override
