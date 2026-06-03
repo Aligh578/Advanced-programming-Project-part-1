@@ -5,7 +5,7 @@ import Board.Board;
 
 public class Knight extends Piece {
     public Knight(Color color) {
-        super(color, color == Color.WHITE ? 'N' : 'n');
+        super(color, color == Color.WHITE ? '\u2658' : '\u265E');
     }
 
     @Override
