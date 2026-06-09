@@ -117,6 +117,15 @@ public class ChessGUI extends JFrame {
             board.recordLastMove(sourceRow, sourceCol, row, col);
 
             currentTurn = (currentTurn == Utils.Color.WHITE) ? Utils.Color.BLACK : Utils.Color.WHITE;
+
+            if (!hasAnyLegalMoves(currentTurn)) {
+                if (board.isInCheck(currentTurn)) {
+                    String winner = (currentTurn == Utils.Color.WHITE) ? "سیاه" : "سفید";
+                    JOptionPane.showMessageDialog(this, "کیش‌ومات! بازیکن " + winner + " برنده شد! 👑");
+                } else {
+                    JOptionPane.showMessageDialog(this, "بازی پات شد (Stalemate)! مسابقه با نتیجه مساوی به پایان رسید. 🤝");
+                }
+            }
             
 
             if (selectedPiece instanceof Pawn) {
@@ -195,5 +204,26 @@ public class ChessGUI extends JFrame {
                 }
             }
         }
+    }
+
+    private boolean hasAnyLegalMoves(Utils.Color color) {
+        for (int r = 0; r < 8; r++) {
+            for (int c = 0; c < 8; c++) {
+                Piece p = board.getPiece(r, c);
+                if (p != null && p.getColor() == color) {
+                    for (int tr = 0; tr < 8; tr++) {
+                        for (int tc = 0; tc < 8; tc++) {
+                            Piece target = board.getPiece(tr, tc);
+                            if (p.isValidMove(r, c, tr, tc, board) && 
+                                (target == null || target.getColor() != color) &&
+                                !board.wouldMoveLeaveKingInCheck(r, c, tr, tc, color)) {
+                                return true; 
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false; 
     }
 }
