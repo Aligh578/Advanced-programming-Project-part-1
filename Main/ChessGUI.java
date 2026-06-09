@@ -42,7 +42,7 @@ public class ChessGUI extends JFrame {
         setVisible(true);
 
 
-        timerLabel = new javax.swing.JLabel("زمان سفید: 05:00  |  زمان سیاه: 05:00", javax.swing.JLabel.CENTER);
+        timerLabel = new javax.swing.JLabel("White time: 05:00  |  Black time: 05:00", javax.swing.JLabel.CENTER);
         timerLabel.setFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 16));
         timerLabel.setBackground(new java.awt.Color(44, 62, 80));
         timerLabel.setForeground(java.awt.Color.WHITE);
@@ -56,13 +56,13 @@ public class ChessGUI extends JFrame {
                 whiteTime--;
                 if (whiteTime <= 0) {
                     gameTimer.stop();
-                    javax.swing.JOptionPane.showMessageDialog(this, "زمان سفید تمام شد! سیاه برنده است. ⏳");
+                    javax.swing.JOptionPane.showMessageDialog(this, "White time is up! Black wins. ⏳");
                 }
             } else {
                 blackTime--;
                 if (blackTime <= 0) {
                     gameTimer.stop();
-                    javax.swing.JOptionPane.showMessageDialog(this, "زمان سیاه تمام شد! سفید برنده است. ⏳");
+                    javax.swing.JOptionPane.showMessageDialog(this, "Black time is up! White wins. ⏳");
                 }
             }
             updateTimerLabel(); 
@@ -158,10 +158,10 @@ public class ChessGUI extends JFrame {
                     gameTimer.stop();
                 }
                 if (board.isInCheck(currentTurn)) {
-                    String winner = (currentTurn == Utils.Color.WHITE) ? "سیاه" : "سفید";
-                    JOptionPane.showMessageDialog(this, "کیش‌ومات! بازیکن " + winner + " برنده شد! 👑");
+                    String winner = (currentTurn == Utils.Color.WHITE) ? "Black" : "White";
+                    JOptionPane.showMessageDialog(this, "Checkmate! Player " + winner + " winner! 👑");
                 } else {
-                    JOptionPane.showMessageDialog(this, "بازی پات شد (Stalemate)! مسابقه با نتیجه مساوی به پایان رسید. 🤝");
+                    JOptionPane.showMessageDialog(this, "Game ended in a draw (Stalemate)! The match ended in a tie. 🤝");
                 }
             }
             
@@ -171,13 +171,13 @@ public class ChessGUI extends JFrame {
                     (selectedPiece.getColor() == Color.BLACK && row == 7)) {
                     
 
-                        String[] options = {"وزیر (Queen)", "رخ (Rook)", "فیل (Bishop)", "اسب (Knight)"};
+                        String[] options = {"Queen", "Rook", "Bishop", "Knight"};
                     
 
                         int choice = JOptionPane.showOptionDialog(
                         this,
-                        "سرباز شما به ردیف آخر رسید! به کدام مهره ترفیع یابد؟",
-                        "انتخاب مهره ترفیع",
+                        "Your pawn has reached the last rank! Which piece would you like to promote to?",
+                        "Promote Pawn",
                         JOptionPane.DEFAULT_OPTION,
                         JOptionPane.QUESTION_MESSAGE,
                         null,
@@ -271,7 +271,7 @@ public class ChessGUI extends JFrame {
         int bMin = blackTime / 60;
         int bSec = blackTime % 60;
         
-        String timeText = String.format("زمان سفید: %02d:%02d  |  زمان سیاه: %02d:%02d", wMin, wSec, bMin, bSec);
+        String timeText = String.format("White time: %02d:%02d  |  Black time: %02d:%02d", wMin, wSec, bMin, bSec);
         timerLabel.setText(timeText);
     }
 }
