@@ -6,7 +6,8 @@ import Utils.Color;
 import Pieces.Pawn;
 import Pieces.Queen;
 import Pieces.Rook;   
-import Pieces.Bishop; 
+import Pieces.Bishop;
+import Pieces.King;
 import Pieces.Knight;
 
 import javax.swing.*;
@@ -94,6 +95,21 @@ public class ChessGUI extends JFrame {
             board.setPiece(sourceRow, sourceCol, null);
 
             selectedPiece.setMoved(true);
+
+            if (selectedPiece instanceof King && Math.abs(sourceCol - col) == 2) {
+                if (col == 6) {
+                    Piece rook = board.getPiece(row, 7);
+                    board.setPiece(row, 5, rook);
+                    board.setPiece(row, 7, null);
+                    if (rook != null) rook.setMoved(true);
+                } 
+                else if (col == 2) {
+                    Piece rook = board.getPiece(row, 0);
+                    board.setPiece(row, 3, rook);
+                    board.setPiece(row, 0, null);
+                    if (rook != null) rook.setMoved(true);
+                }
+            }
 
             board.recordLastMove(sourceRow, sourceCol, row, col);
 
