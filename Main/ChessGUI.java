@@ -73,7 +73,9 @@ public class ChessGUI extends JFrame {
             for (int r = 0; r < 8; r++) {
                 for (int c = 0; c < 8; c++) {
                     Piece target = board.getPiece(r, c);
-                    if (p.isValidMove(sourceRow, sourceCol, r, c, board) && (target == null || target.getColor() != p.getColor())) {
+                    if (p.isValidMove(sourceRow, sourceCol, r, c, board) && (target == null || target.getColor() != p.getColor()) && 
+                    !board.wouldMoveLeaveKingInCheck(sourceRow, sourceCol, r, c, currentTurn)) {
+
                         squares[r][c].setBackground(new java.awt.Color(186, 220, 181)); 
                     }
                 }
@@ -84,7 +86,8 @@ public class ChessGUI extends JFrame {
         Piece selectedPiece = board.getPiece(sourceRow, sourceCol);
         Piece targetPiece = board.getPiece(row, col); 
         
-        if (selectedPiece.isValidMove(sourceRow, sourceCol, row, col, board) && (targetPiece == null || targetPiece.getColor() != selectedPiece.getColor())) {
+        if (selectedPiece.isValidMove(sourceRow, sourceCol, row, col, board) && (targetPiece == null || targetPiece.getColor() != selectedPiece.getColor()) && 
+        !board.wouldMoveLeaveKingInCheck(sourceRow, sourceCol, row, col, currentTurn)) {
 
             if (selectedPiece instanceof Pawn && Math.abs(sourceCol - col) == 1 && targetPiece == null) {
                 board.setPiece(sourceRow, col, null);
