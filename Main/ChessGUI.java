@@ -153,6 +153,10 @@ public class ChessGUI extends JFrame {
             currentTurn = (currentTurn == Utils.Color.WHITE) ? Utils.Color.BLACK : Utils.Color.WHITE;
 
             if (!hasAnyLegalMoves(currentTurn)) {
+
+                if (gameTimer != null) {
+                    gameTimer.stop();
+                }
                 if (board.isInCheck(currentTurn)) {
                     String winner = (currentTurn == Utils.Color.WHITE) ? "سیاه" : "سفید";
                     JOptionPane.showMessageDialog(this, "کیش‌ومات! بازیکن " + winner + " برنده شد! 👑");
