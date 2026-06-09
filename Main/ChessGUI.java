@@ -22,6 +22,11 @@ public class ChessGUI extends JFrame {
     private int sourceRow = -1;
     private int sourceCol = -1;
 
+    private int whiteTime = 300; 
+    private int blackTime = 300; 
+    private javax.swing.JLabel timerLabel;
+    private javax.swing.Timer gameTimer;
+
     private Color currentTurn = Color.WHITE;
 
     public ChessGUI() {
@@ -35,6 +40,35 @@ public class ChessGUI extends JFrame {
         initializeBoardUI();
         updateBoardUI();
         setVisible(true);
+
+
+        timerLabel = new javax.swing.JLabel("زمان سفید: 05:00  |  زمان سیاه: 05:00", javax.swing.JLabel.CENTER);
+        timerLabel.setFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 16));
+        timerLabel.setBackground(new java.awt.Color(44, 62, 80));
+        timerLabel.setForeground(java.awt.Color.WHITE);
+        timerLabel.setOpaque(true);
+        timerLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 0, 10, 0));
+
+        this.add(timerLabel, java.awt.BorderLayout.NORTH);
+
+        gameTimer = new javax.swing.Timer(1000, e -> {
+            if (currentTurn == Utils.Color.WHITE) {
+                whiteTime--;
+                if (whiteTime <= 0) {
+                    gameTimer.stop();
+                    javax.swing.JOptionPane.showMessageDialog(this, "زمان سفید تمام شد! سیاه برنده است. ⏳");
+                }
+            } else {
+                blackTime--;
+                if (blackTime <= 0) {
+                    gameTimer.stop();
+                    javax.swing.JOptionPane.showMessageDialog(this, "زمان سیاه تمام شد! سفید برنده است. ⏳");
+                }
+            }
+            updateTimerLabel(); 
+        });
+
+        gameTimer.start();
     }
 
     private void initializeBoardUI() {
@@ -225,5 +259,15 @@ public class ChessGUI extends JFrame {
             }
         }
         return false; 
+    }
+
+    private void updateTimerLabel() {
+        int wMin = whiteTime / 60;
+        int wSec = whiteTime % 60;
+        int bMin = blackTime / 60;
+        int bSec = blackTime % 60;
+        
+        String timeText = String.format("زمان سفید: %02d:%02d  |  زمان سیاه: %02d:%02d", wMin, wSec, bMin, bSec);
+        timerLabel.setText(timeText);
     }
 }
