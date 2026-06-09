@@ -93,6 +93,8 @@ public class ChessGUI extends JFrame {
             board.setPiece(row, col, selectedPiece);
             board.setPiece(sourceRow, sourceCol, null);
 
+            selectedPiece.setMoved(true);
+
             board.recordLastMove(sourceRow, sourceCol, row, col);
 
             currentTurn = (currentTurn == Utils.Color.WHITE) ? Utils.Color.BLACK : Utils.Color.WHITE;
