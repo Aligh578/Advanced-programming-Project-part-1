@@ -19,20 +19,34 @@ public class King extends Piece {
 
         if (rowDiff == 0 && colDiff == 2 && !this.hasMoved()) {
 
-        int rookSourceCol = (endC > startC) ? 7 : 0; 
-        Piece rook = board.getPiece(startR, rookSourceCol);
+            Utils.Color attackerColor = (this.getColor() == Utils.Color.WHITE) ? Utils.Color.BLACK : Utils.Color.WHITE;
+
+            if (board.isInCheck(this.getColor())) {
+                return false;
+            }
+            
+            int rookSourceCol = (endC > startC) ? 7 : 0; 
+            Piece rook = board.getPiece(startR, rookSourceCol);
 
             if (rook instanceof Pieces.Rook && !rook.hasMoved()) {
                 int step = (endC > startC) ? 1 : -1;
+
+                for (int i = 1; i <= 2; i++) {
+                    int checkCol = startC + (i * step);
+                    if (board.isSquareAttacked(startR, checkCol, attackerColor)) {
+                        return false; 
+                    }
+                }
+
                 int currCol = startC + step;
                 while (currCol != rookSourceCol) {
                     if (board.getPiece(startR, currCol) != null) {
-                        return false; // اگر مهره‌ای وسط مسیر باشد، قلعه ملغی است
+                        return false; 
                     }
                     currCol += step;
                 }
 
-                return true; // مسیر خالی است و شرایط مهره‌ها آماده است
+                return true; 
             }
         }
         return false;
