@@ -6,6 +6,11 @@ import Pieces.*;
 public class Board {
     private Piece[][] grid;
 
+    private int lastMoveStartRow = -1;
+    private int lastMoveStartCol = -1;
+    private int lastMoveEndRow = -1;
+    private int lastMoveEndCol = -1;
+
     public Board() {
         grid = new Piece[8][8];
         initializeBoard();
@@ -64,4 +69,17 @@ public class Board {
         }
         System.out.println("  a b c d e f g h\n");
     }
+
+    public void recordLastMove(int startR, int startC, int endR, int endC) {
+        this.lastMoveStartRow = startR;
+        this.lastMoveStartCol = startC;
+        this.lastMoveEndRow = endR;
+        this.lastMoveEndCol = endC;
+    }
+
+    public int getLastMoveStartRow() { return lastMoveStartRow; }
+    public int getLastMoveStartCol() { return lastMoveStartCol; }
+    public int getLastMoveEndRow() { return lastMoveEndRow; }
+    public int getLastMoveEndCol() { return lastMoveEndCol; }
+
 }
