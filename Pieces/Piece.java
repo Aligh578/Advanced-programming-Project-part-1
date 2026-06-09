@@ -7,6 +7,16 @@ public abstract class Piece {
     protected Color color;
     protected char symbol;
 
+    protected boolean hasMoved = false;
+
+    public boolean hasMoved() {
+        return hasMoved;
+    }
+
+    public void setMoved(boolean moved) {
+        this.hasMoved = moved;
+    }
+
     public Piece(Color color, char symbol) {
         this.color = color;
         this.symbol = symbol;
