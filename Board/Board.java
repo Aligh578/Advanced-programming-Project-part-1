@@ -82,4 +82,39 @@ public class Board {
     public int getLastMoveEndRow() { return lastMoveEndRow; }
     public int getLastMoveEndCol() { return lastMoveEndCol; }
 
+
+    public int[] findKing(Utils.Color kingColor) {
+        for (int r = 0; r < 8; r++) {
+            for (int c = 0; c < 8; c++) {
+                Piece piece = getPiece(r, c);
+                if (piece instanceof Pieces.King && piece.getColor() == kingColor) {
+                    return new int[]{r, c};
+                }
+            }
+        }
+        return null; 
+    }
+
+    public boolean isSquareAttacked(int targetRow, int targetCol, Utils.Color attackerColor) {
+        for (int r = 0; r < 8; r++) {
+            for (int c = 0; c < 8; c++) {
+                Piece piece = getPiece(r, c);
+                if (piece != null && piece.getColor() == attackerColor) {
+                    if (piece.isValidMove(r, c, targetRow, targetCol, this)) {
+                        return true; 
+                    }
+                }
+            }
+        }
+        return false; 
+    }
+
+    public boolean isInCheck(Utils.Color kingColor) {
+        int[] kingPos = findKing(kingColor);
+        if (kingPos == null) return false; 
+        
+        Utils.Color attackerColor = (kingColor == Utils.Color.WHITE) ? Utils.Color.BLACK : Utils.Color.WHITE;
+        
+        return isSquareAttacked(kingPos[0], kingPos[1], attackerColor);
+    }
 }
