@@ -84,10 +84,18 @@ public class ChessGUI extends JFrame {
         Piece targetPiece = board.getPiece(row, col); 
         
         if (selectedPiece.isValidMove(sourceRow, sourceCol, row, col, board) && (targetPiece == null || targetPiece.getColor() != selectedPiece.getColor())) {
+
+            if (selectedPiece instanceof Pawn && Math.abs(sourceCol - col) == 1 && targetPiece == null) {
+                board.setPiece(sourceRow, col, null);
+            }
             
 
             board.setPiece(row, col, selectedPiece);
             board.setPiece(sourceRow, sourceCol, null);
+
+            board.recordLastMove(sourceRow, sourceCol, row, col);
+
+            currentTurn = (currentTurn == Utils.Color.WHITE) ? Utils.Color.BLACK : Utils.Color.WHITE;
             
 
             if (selectedPiece instanceof Pawn) {
