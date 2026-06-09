@@ -3,6 +3,11 @@ package Main;
 import Board.Board;
 import Pieces.Piece;
 import Utils.Color;
+import Pieces.Pawn;
+import Pieces.Queen;
+import Pieces.Rook;   
+import Pieces.Bishop; 
+import Pieces.Knight;
 
 import javax.swing.*;
 import java.awt.*;
