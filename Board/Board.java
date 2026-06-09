@@ -117,4 +117,19 @@ public class Board {
         
         return isSquareAttacked(kingPos[0], kingPos[1], attackerColor);
     }
+
+    public boolean wouldMoveLeaveKingInCheck(int startR, int startC, int endR, int endC, Utils.Color kingColor) {
+        Piece sourcePiece = getPiece(startR, startC);
+        Piece targetPiece = getPiece(endR, endC);
+
+        setPiece(endR, endC, sourcePiece);
+        setPiece(startR, startC, null);
+
+        boolean inCheck = isInCheck(kingColor);
+
+        setPiece(startR, startC, sourcePiece);
+        setPiece(endR, endC, targetPiece);
+
+        return inCheck; 
+    }
 }
